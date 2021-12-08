@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const userSlice = createSlice({
-  name: 'userInfo',
-  initialState: {},
+  name: 'forum',
+  initialState: [],
   reducers: {
-    setUserInfo: {
+    setForumList: {
       reducer: (state, action) => {
         return action.payload;
       },
@@ -13,5 +13,5 @@ const userSlice = createSlice({
 });
 
 const { actions, reducer } = userSlice;
-export const { setUserInfo } = actions;
+export const { setForumList } = actions;
 export default reducer;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
   HeaderBox,
@@ -23,11 +24,15 @@ const Logo = () => (
   </Link>
 );
 
-const Profile = () => (
-  <Link to="/profile">
-    <ProfileBox>
-      <UserProfileImage src="/images/profile.png" />
-      <UserNameLabel>{`유저네임`}</UserNameLabel>
-    </ProfileBox>
-  </Link>
-);
+const Profile = () => {
+  const { username } = useSelector((state) => state.userInfo);
+
+  return (
+    <Link to="/profile">
+      <ProfileBox>
+        <UserProfileImage src="/images/profile.png" />
+        <UserNameLabel>{username}</UserNameLabel>
+      </ProfileBox>
+    </Link>
+  );
+};

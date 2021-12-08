@@ -2,10 +2,10 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useNavigate } from 'react-router';
 import { LOGIN_TOKEN } from '../../App';
+import { Center } from '../../components/styles/FlexBox';
 import { useLoginMutation } from '../../redux/user.api';
-import { setUser } from '../../redux/user.reducer';
+import { setUser, setUserInfo } from '../../redux/user.reducer';
 import {
-  Center,
   LoginBox,
   LoginButton,
   LoginInput,
@@ -25,10 +25,14 @@ const validation = {
 };
 
 const Login = () => {
-  const [form, setForm] = useState({ id: '', password: '' });
+  const [form, setForm] = useState({
+    id: { value: '', isValid: false },
+    password: { value: '', isValid: false },
+  });
   const { id, password } = form;
 
-  const token = useSelector((state) => state.user.token);
+  const token = useSelector((state) => state.userInfo.token);
+  const state = useSelector((state) => state);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -54,9 +58,7 @@ const Login = () => {
       window.alert('아이디와 비밀번호를 확인해주세요.');
       return;
     }
-    const user = res.data.shift();
-
-    dispatch(setUser({ ...user, token: LOGIN_TOKEN }));
+    dispatch(setUserInfo({ ...res.data[0], token: LOGIN_TOKEN }));
     navigate('/forum');
   };
 

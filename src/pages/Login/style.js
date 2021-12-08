@@ -1,13 +1,6 @@
 import styled from 'styled-components';
-import Button from '../../styles/Button';
-import FlexBox from '../../styles/FlexBox';
-import { H1 } from '../../styles/H1';
-
-export const Center = styled(FlexBox)`
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-`;
+import Button from '../../components/styles//Button';
+import { H1 } from '../../components/styles//H1';
 
 export const LoginBox = styled.div`
   width: 300px;
@@ -47,5 +40,6 @@ export const LoginButton = styled(Button)`
 export const ValidationAlert = styled.p`
   margin-bottom: 5px;
   font-size: 0.8em;
+  height: 20px;
   color: #faa;
 `;

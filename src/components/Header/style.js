@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import FlexBox from '../../styles/FlexBox';
+import FlexBox from '../../components/styles//FlexBox';
 
 export const HeaderBox = styled(FlexBox)`
   justify-content: space-between;
@@ -15,7 +15,7 @@ export const ProfileBox = styled(FlexBox)`
   align-items: center;
   gap: 10px;
 
-  background-color: #ddd;
+  background-color: #eee;
   padding: 10px 20px;
   border-radius: 5px;
 
