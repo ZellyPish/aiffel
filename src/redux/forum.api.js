@@ -15,7 +15,39 @@ export const forumApi = createApi({
         };
       },
     }),
+    getPostById: builder.query({
+      query: (arg) => {
+        const { id } = arg;
+        return {
+          url: `forum/${id}`,
+        };
+      },
+    }),
+    patchPostById: builder.mutation({
+      query: (arg) => {
+        const { id, isLiked } = arg;
+        return {
+          url: `forum/${id}`,
+          method: 'PATCH',
+          body: { isLiked },
+        };
+      },
+    }),
+    deletePostById: builder.mutation({
+      query: (arg) => {
+        const { id } = arg;
+        return {
+          url: `forum/${id}`,
+          method: 'DELETE',
+        };
+      },
+    }),
   }),
 });
 
-export const { useGetForumPostsQuery } = forumApi;
+export const {
+  useGetForumPostsQuery,
+  useGetPostByIdQuery,
+  usePatchPostByIdMutation,
+  useDeletePostByIdMutation,
+} = forumApi;

@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useNavigate } from 'react-router';
 import { LOGIN_TOKEN } from '../../App';
+import { FullPage } from '../../components/styles/Container';
 import { Center } from '../../components/styles/FlexBox';
 import { useLoginMutation } from '../../redux/user.api';
 import { setUser, setUserInfo } from '../../redux/user.reducer';
@@ -65,34 +66,36 @@ const Login = () => {
   return (
     <>
       {token && <Navigate to="/forum" replace />}
-      <Center>
-        <LoginBox>
-          <LoginTitle>Willing to Explore?</LoginTitle>
-          <LoginMessage>매일매일 모험하며 제대로 배우자</LoginMessage>
-          <form onSubmit={handleLogin}>
-            <LoginInput
-              placeholder="사용자명 또는 이메일 주소"
-              name="id"
-              value={id.value}
-              onChange={onChange}
-            />
-            <ValidationAlert>
-              {!id.isValid && '이메일타입으로 입력해주세요.'}
-            </ValidationAlert>
-            <LoginInput
-              placeholder="비밀번호"
-              name="password"
-              type="password"
-              value={password.value}
-              onChange={onChange}
-            />
-            <ValidationAlert>
-              {!password.isValid && '10글자 이상 입력해주세요.'}
-            </ValidationAlert>
-            <LoginButton type="submit">로그인</LoginButton>
-          </form>
-        </LoginBox>
-      </Center>
+      <FullPage>
+        <Center>
+          <LoginBox>
+            <LoginTitle>Willing to Explore?</LoginTitle>
+            <LoginMessage>매일매일 모험하며 제대로 배우자</LoginMessage>
+            <form onSubmit={handleLogin}>
+              <LoginInput
+                placeholder="사용자명 또는 이메일 주소"
+                name="id"
+                value={id.value}
+                onChange={onChange}
+              />
+              <ValidationAlert>
+                {!id.isValid && '이메일타입으로 입력해주세요.'}
+              </ValidationAlert>
+              <LoginInput
+                placeholder="비밀번호"
+                name="password"
+                type="password"
+                value={password.value}
+                onChange={onChange}
+              />
+              <ValidationAlert>
+                {!password.isValid && '10글자 이상 입력해주세요.'}
+              </ValidationAlert>
+              <LoginButton type="submit">로그인</LoginButton>
+            </form>
+          </LoginBox>
+        </Center>
+      </FullPage>
     </>
   );
 };

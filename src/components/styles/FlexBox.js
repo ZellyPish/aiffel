@@ -1,13 +1,17 @@
 import styled from 'styled-components';
 
-const FlexBox = styled.div`
+export const FlexBox = styled.div`
   display: flex;
 `;
 
-export default FlexBox;
-
-export const FlexColAlignCenter = styled(FlexBox)`
+export const FlexColumn = styled(FlexBox)`
   flex-direction: column;
+`;
+export const FlexColumnBox = styled(FlexColumn)`
+  flex-direction: column;
+  margin: 20px 0;
+`;
+export const FlexColAlignCenter = styled(FlexColumn)`
   align-items: center;
 `;
 
@@ -16,4 +20,8 @@ export const Center = styled(FlexBox)`
   align-items: center;
   justify-content: center;
   height: 100%;
+`;
+
+export const CenterHorizontal = styled(FlexBox)`
+  justify-content: center;
 `;

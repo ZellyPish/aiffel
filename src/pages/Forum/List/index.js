@@ -1,14 +1,25 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Errors from '../../../components/Errors';
+import Tag from '../../../components/Tag';
 import Button from '../../../components/styles/Button';
-import FlexBox, {
-  FlexColAlignCenter,
+import Divider from '../../../components/styles/Divider';
+import {
+  FlexBox,
+  CenterHorizontal,
+  FlexColumn,
+  FlexColumnBox,
 } from '../../../components/styles/FlexBox';
 import { useGetForumPostsQuery } from '../../../redux/forum.api';
 import { Input } from '../../Login/style';
-import { PagenationBox, SearchBox, SearchButton } from './style';
+import {
+  ForumItemBox,
+  ForumItemContent,
+  ForumItemTitle,
+  PagenationBox,
+  SearchBox,
+  SearchButton,
+} from './style';
 
 const PAGE_LIMIT = 5;
 
@@ -40,7 +51,7 @@ export default function Forum() {
 
   useEffect(() => {
     refetch();
-  }, [keyword, currentPage, refetch]);
+  }, [keyword, currentPage]);
 
   const onSearch = (keyword) => {
     if (!keyword.isValid) {
@@ -54,25 +65,20 @@ export default function Forum() {
     setKeyword((prev) => ({ ...prev, value: '' }));
   };
 
-  const show = () => {
-    console.log(post);
-  };
-
   let content;
   if (isLoading) content = <div>로딩중입니다.</div>;
   else if (isError) content = <Errors text="에러 발생." />;
   else if (!post?.length) content = <Errors text="글이 없습니다." />;
   else if (post?.length) {
-    console.log('asd');
-    content = post.map((v) => <div key={v.id}>{v.title}</div>);
+    content = post.map((v) => <ForumItem key={v.id} v={v} />);
   }
 
   return (
-    <FlexColAlignCenter>
+    <FlexColumnBox>
       <Search onSearch={onSearch} resetSearch={resetSearch} />
       {content}
       <Pagenation currentPage={currentPage} setCurrentPage={setCurrentPage} />
-    </FlexColAlignCenter>
+    </FlexColumnBox>
   );
 }
 
@@ -85,22 +91,43 @@ const Search = ({ onSearch, resetSearch }) => {
   }, []);
 
   return (
-    <SearchBox>
-      <Input value={keyword.value} onChange={onChange} />
-      <SearchButton onClick={() => onSearch(keyword)}>검색</SearchButton>
-      <SearchButton onClick={resetSearch}>초기화</SearchButton>
-    </SearchBox>
+    <CenterHorizontal>
+      <SearchBox>
+        <Input value={keyword.value} onChange={onChange} />
+        <SearchButton onClick={() => onSearch(keyword)}>검색</SearchButton>
+        <SearchButton onClick={resetSearch}>초기화</SearchButton>
+      </SearchBox>
+    </CenterHorizontal>
   );
 };
 
-const ForumItem = ({ v }) => {};
+const ForumItem = ({ v }) => {
+  return (
+    <CenterHorizontal>
+      <ForumItemBox>
+        <Link to={'./' + v.id}>
+          <FlexColumn>
+            <ForumItemTitle>{v.title}</ForumItemTitle>
+            <ForumItemContent>{v.content}</ForumItemContent>
+            <FlexBox>
+              <Tag tag={v.tag} />
+            </FlexBox>
+            <Divider />
+          </FlexColumn>
+        </Link>
+      </ForumItemBox>
+    </CenterHorizontal>
+  );
+};
 
 const Pagenation = ({ currentPage, setCurrentPage }) => {
   return (
-    <PagenationBox>
-      <Button onClick={() => setCurrentPage((prev) => prev - 1)}>이전</Button>
-      <div>현재 {currentPage}페이지</div>
-      <Button onClick={() => setCurrentPage((prev) => prev + 1)}>다음</Button>
-    </PagenationBox>
+    <CenterHorizontal>
+      <PagenationBox>
+        <Button onClick={() => setCurrentPage((prev) => prev - 1)}>이전</Button>
+        <div>현재 {currentPage}페이지</div>
+        <Button onClick={() => setCurrentPage((prev) => prev + 1)}>다음</Button>
+      </PagenationBox>
+    </CenterHorizontal>
   );
 };

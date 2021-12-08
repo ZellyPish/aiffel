@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import FlexBox from '../../components/styles//FlexBox';
+import { FlexBox } from '../../components/styles//FlexBox';
 
 export const HeaderBox = styled(FlexBox)`
   justify-content: space-between;
