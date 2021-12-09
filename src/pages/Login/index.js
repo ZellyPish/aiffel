@@ -55,6 +55,8 @@ const Login = () => {
       email: id.value,
       password: password.value,
     });
+    console.log(res)
+    if (res.error) return window.alert('서버 연결을 확인해주세요.');
     if (!res.data.length) {
       window.alert('아이디와 비밀번호를 확인해주세요.');
       return;

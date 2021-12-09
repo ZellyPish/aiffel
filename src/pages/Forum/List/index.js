@@ -38,7 +38,7 @@ export default function Forum() {
       selectFromResult: ({ data }) => {
         return {
           data: keyword.value.length
-            ? data.filter(
+            ? data?.filter(
                 (v) =>
                   v.title.includes(keyword.value) ||
                   v.content.includes(keyword.value),

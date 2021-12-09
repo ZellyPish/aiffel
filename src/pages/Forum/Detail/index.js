@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Errors from '../../../components/Errors';
 import Button from '../../../components/styles/Button';
 import { FlexBox, CenterHorizontal } from '../../../components/styles/FlexBox';
 import { H1 } from '../../../components/styles/H1';
@@ -29,7 +30,7 @@ const Detail = () => {
   if (isLoading) return <H1>로딩중입니다...</H1>;
 
   return (
-    <CenterHorizontal>
+    post ? <CenterHorizontal>
       <DetailBox>
         <DetailTitle>{post.title}</DetailTitle>
         {post.tag && (
@@ -44,6 +45,7 @@ const Detail = () => {
         </ActionBox>
       </DetailBox>
     </CenterHorizontal>
+    : <Errors text="글을 불러오는데 실패했습니다."/>
   );
 };
 
