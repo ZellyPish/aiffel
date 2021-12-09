@@ -10,6 +10,8 @@ chrome, edge에 최적화 되어 있습니다.
 - 루트폴더에서 `npm i`, `npm start` 입력
 - http://localhost:3000 접속
 
+(맥에서 5000번 포트를 점유하고 있는 이슈가 있어 json-server의 포트를 5050포트로 변경해두었습니다.)
+
 ### 사용 기술
 
 - react
