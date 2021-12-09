@@ -1,10 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
-const baseUrl = 'http://localhost:5000';
+import { BASE_URL } from '../App';
 
 export const forumApi = createApi({
   reducerPath: 'forum',
-  baseQuery: fetchBaseQuery({ baseUrl }),
+  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: (builder) => ({
     getForumPosts: builder.query({
       query: (arg) => {

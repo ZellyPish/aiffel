@@ -8,6 +8,7 @@ import AuthedPages from './AuthedPages';
 import Detail from './pages/Forum/Detail';
 
 export const LOGIN_TOKEN = 'login success';
+export const BASE_URL = 'http://localhost:5050';
 
 function App() {
   const token = useSelector((state) => state.userInfo.token);
